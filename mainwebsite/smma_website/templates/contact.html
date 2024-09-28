@@ -1,0 +1,113 @@
+{% extends "index/index.html" %}
+{% block title %}Contact{% endblock title %}
+{% block body1 %}
+<div class="container">
+    <h2>Contact Us</h2>
+    <form action="/contact" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required style="max-width: 720px 100%;">
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required>
+        </div>
+        <div class="form-group">
+            <label for="reason">What do you want to say</label>
+            <textarea name="reason" id="reason"></textarea>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="submit-button" value="Submit">
+        </div>
+    </form>
+</div>
+<style>
+        .container {
+        max-width: 800px;
+        margin: 50px auto;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+    }
+    #reason{
+        resize: none;
+        height: 150px;
+        
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea {
+        width: calc(100% - 20px);
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .form-group textarea {
+        height: 150px;
+        resize: vertical;
+    }
+
+    .submit-button {
+        font-size: 1rem;
+        background-image: linear-gradient(to top, #ff7062 0%, #fe5196 100%);
+        padding: 14px 32px;
+        border: none;
+        border-radius: 4px;
+        margin-top: 2rem;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.35s;
+        outline: none;
+    }
+
+    .submit-button a {
+        position: relative;
+        z-index: 2;
+        color: #ffff;
+        text-decoration: none;
+    }
+
+    .submit-button:after {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background: #4837ff;
+        transition: all 0.35s;
+        border-radius: 4px;
+    }
+
+    .submit-button:hover {
+        color: #ffff;
+    }
+
+    .submit-button:hover:after {
+        width: 100%;
+    }
+</style>
+{% endblock body1 %}
+{% block body2 %}{% endblock body2 %}

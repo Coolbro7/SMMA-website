@@ -1,0 +1,114 @@
+{% extends "index/index.html" %}
+{% load static %}
+{%load removeimage%}
+{%load slug%}
+{% block title %}blog{% endblock title %}
+{% block body1%}
+<div class=post>
+    {% block posts %}
+    {% for post in posts %}
+        <div class="new_post">
+            <a class="article-link" href="{% url 'detail' post.pk post.title|slug %}"><h3 id="title">{{post.title}}</h3></a>
+            <small>
+                Author : {{post.author}}
+                <br>
+                {{post.created_on.date}} | Categories:
+                {%for category in post.categories.all%}
+                <a class="article-link" href="{% url 'blog_category' category.name%}">{{category.name}}</a>
+                {%endfor%}
+            </small>
+            <div class="synopsis">
+                {{post.body |remove_image | safe | slice:":150" }}...
+            </div>
+        </div>
+    <br>
+    {% endfor %}
+
+    {% endblock posts %}
+
+</div>
+
+<style>
+    body {
+        background-color: #333;
+    }
+
+    .awsp {
+        max-width: 200px;
+        max-height: 200px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        border-style: groove;
+    }
+
+    .detail_link:hover {
+        transform: scale(1.1);
+    }
+
+    .new_post {
+        width: 300px;
+        height: 400px;
+        background-color: #f0f0f0;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 20px auto;
+        text-align: left;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .synopsis {
+        padding: 10px;
+        height: auto;
+    }
+
+    .post {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 10px;
+        /* Adjust the gap between divs */
+        padding: 50px;
+    }
+
+    #title {
+        font-size: auto;
+    }
+
+    .article-link {
+        color: #000000;
+        /* Default link color */
+        text-decoration: none;
+        /* Remove underline */
+        transition: color 0.3s ease;
+        /* Smooth color transition */
+
+
+    }
+
+    .article-link:hover {
+        color: #ff0e0e;
+        /* Color change on hover */
+
+    }
+
+    /* Visited link styles */
+
+    /* Active link styles */
+    .article-link:active {
+        color: #cc0000;
+        /* Color for active links (when clicked) */
+    }
+
+    /* Link styles for specific class */
+    .link-class {
+        color: #dc3545;
+        /* Color for links with class .link-class */
+    }
+</style>
+{% endblock body1%}
+{% block body2 %}
+{% endblock body2 %}

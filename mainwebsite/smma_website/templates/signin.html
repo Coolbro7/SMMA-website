@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="signin-container">
+    <h2>Login</h2>
+    <form action="/signin" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">First Name:</label>
+            <input type="text" id="fname" name="fname" required>
+        </div>
+        <div class="form-group">
+            <label for="name">Last Name:</label>
+            <input type="text" id="lname" name="lname" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Login">
+        </div>
+        <div class="form-group">
+            <a href="#" class="register-link">Don't have an account? Register here.</a>
+        </div>
+    </form>
+</div>
+{% endblock body %}
